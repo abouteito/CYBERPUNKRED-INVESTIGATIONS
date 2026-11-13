@@ -37,7 +37,9 @@
       "Reopen": "Reopen",
       "Shared": "Visible to players",
       "NotShared": "Hidden from players",
-      "ShareHint": "Players need Observer permission to see the mystery and make checks."
+      "ShareHint": "Players need Observer permission to see the mystery and make checks.",
+      "UnlimitedAttempts": "unlimited attempts",
+      "UnlimitedAttemptsHint": "Characters may retry each clue and obstacle any number of times per day; only Focus limits them. Useful for cases set in a single night."
     },
     "Difficulty": {
       "easy": "Easy",

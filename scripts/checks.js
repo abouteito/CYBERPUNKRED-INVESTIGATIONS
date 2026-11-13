@@ -13,7 +13,7 @@ import {
   OBSTACLE_FOCUS_FAILURE,
   OBSTACLE_FOCUS_SUCCESS,
 } from "./constants.js";
-import { applyClueDamage, attemptedOnDay, canMakeEvidenceCheck, isFumble, isSuccess, restRecovery } from "./rules.js";
+import { applyClueDamage, attemptBlocked, canMakeEvidenceCheck, isFumble, isSuccess, restRecovery } from "./rules.js";
 import { getSetting } from "./settings.js";
 import { InvSocket } from "./socket.js";
 import { getFocus, isFocusActor, modifyFocus, setFocus } from "./focus.js";
@@ -97,7 +97,7 @@ export async function evidenceCheck(journal, clueId) {
   if (!actor) return;
   const focus = getFocus(actor);
   if (!canMakeEvidenceCheck(focus.value)) return notify("warn", "CPRINV.Error.NoFocus", { name: actor.name });
-  if (attemptedOnDay(clue, actor.uuid, currentDay())) {
+  if (attemptBlocked(mystery, clue, actor.uuid, currentDay())) {
     return notify("warn", "CPRINV.Error.AlreadyTried", { name: actor.name });
   }
 
@@ -136,7 +136,7 @@ async function handleEvidence(payload, user) {
   const mystery = getMystery(journal);
   const clue = mystery.clues.find((c) => c.id === payload.clueId);
   if (!clue || !["available", "collected"].includes(clue.state)) throw new Error(loc("CPRINV.Error.ClueUnavailable"));
-  if (attemptedOnDay(clue, actor.uuid, day)) throw new Error(loc("CPRINV.Error.AlreadyTried", { name: actor.name }));
+  if (attemptBlocked(mystery, clue, actor.uuid, day)) throw new Error(loc("CPRINV.Error.AlreadyTried", { name: actor.name }));
   if (!canMakeEvidenceCheck(getFocus(actor).value)) throw new Error(loc("CPRINV.Error.NoFocus", { name: actor.name }));
 
   const total = Number(payload.total) || 0;
@@ -342,7 +342,7 @@ export async function faceObstacle(journal, obstacleId) {
   const title = loc("CPRINV.Obstacle.FaceTitle", { name: obstacle.name || loc(`CPRINV.ObstacleType.${obstacle.type}`) });
   const actor = await chooseActor({ title });
   if (!actor) return;
-  if (attemptedOnDay(obstacle, actor.uuid, currentDay())) {
+  if (attemptBlocked(mystery, obstacle, actor.uuid, currentDay())) {
     return notify("warn", "CPRINV.Error.AlreadyTried", { name: actor.name });
   }
   const choice = await chooseSkill(actor, {
@@ -392,9 +392,10 @@ async function handleObstacle(payload, user) {
   const journal = getJournal(payload.journalId);
   const actor = await resolveActor(payload.actorUuid, user);
   const day = currentDay();
-  const obstacle = getMystery(journal).obstacles.find((o) => o.id === payload.obstacleId);
+  const mystery = getMystery(journal);
+  const obstacle = mystery.obstacles.find((o) => o.id === payload.obstacleId);
   if (!obstacle || obstacle.state !== "active") throw new Error(loc("CPRINV.Error.ObstacleUnavailable"));
-  if (attemptedOnDay(obstacle, actor.uuid, day)) throw new Error(loc("CPRINV.Error.AlreadyTried", { name: actor.name }));
+  if (attemptBlocked(mystery, obstacle, actor.uuid, day)) throw new Error(loc("CPRINV.Error.AlreadyTried", { name: actor.name }));
 
   const total = Number(payload.total) || 0;
   const success = isSuccess(total, obstacle.dv, ties());

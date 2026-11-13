@@ -1,13 +1,7 @@
-Primeira versão do sistema de investigação de **Did Someone Say Murder?** (R. Talsorian Games) para Cyberpunk RED - CORE 0.92.4 no Foundry v12.
+## 0.1.2
 
-- Foco na ficha de personagem e de NPC, com descanso e histórico
-- Mistérios com Complexidade, pistas com Ofuscação e Testes de Evidência resolvidos pelo mestre
-- Pistas falsas, dicas (Dedução CD 15), obstáculos e relógio correndo
-- Compêndio com *Grab and Smash* e *Someone Stole it First!*
-- Português e inglês
+- Nova opção por mistério: **tentativas ilimitadas**. Com ela marcada (no topo do painel, ao lado de *Novo dia*), cada personagem pode tentar a mesma pista ou o mesmo obstáculo quantas vezes quiser no mesmo dia; só o Foco limita. Pensada para casos que se passam numa única noite.
+- Mistérios antigos continuam com o limite de uma tentativa por pista por dia.
 
-**Instalar:** no Foundry, *Add-on Modules → Install Module*, cole o manifesto:
+**Instalar ou atualizar:** no Foundry, *Add-on Modules → Install Module*, cole o manifesto:
 `https://github.com/abouteito/CYBERPUNKRED-INVESTIGATIONS/releases/latest/download/module.json`
-
-Ainda não testado num Foundry real: faça o primeiro teste numa cópia do mundo.
-

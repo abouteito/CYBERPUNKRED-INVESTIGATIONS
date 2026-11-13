@@ -37,7 +37,9 @@
       "Reopen": "Reabrir",
       "Shared": "Visível aos jogadores",
       "NotShared": "Oculto dos jogadores",
-      "ShareHint": "Jogadores precisam de permissão de Observador para ver o mistério e fazer testes."
+      "ShareHint": "Jogadores precisam de permissão de Observador para ver o mistério e fazer testes.",
+      "UnlimitedAttempts": "tentativas ilimitadas",
+      "UnlimitedAttemptsHint": "Cada personagem pode tentar cada pista e obstáculo quantas vezes quiser no mesmo dia; só o Foco limita. Útil para casos que se passam numa única noite."
     },
     "Difficulty": {
       "easy": "Fácil",

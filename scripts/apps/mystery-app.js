@@ -2,7 +2,7 @@
  * Painel de um mistério. O mestre edita tudo; jogadores veem o que foi revelado e fazem os testes.
  */
 import { COMPLEXITY, OBFUSCATION, ROLE_PREFIX, SCIENCE_WILDCARD } from "../constants.js";
-import { attemptedOnDay, complexityForDifficulty, clamp } from "../rules.js";
+import { attemptBlocked, complexityForDifficulty, clamp } from "../rules.js";
 import { getSetting } from "../settings.js";
 import { currentDay, getMystery, isShared, mutateMystery, newHint, setShared } from "../mystery-store.js";
 import { getFocus, isFocusActor } from "../focus.js";
@@ -112,7 +112,7 @@ export class MysteryApp extends HandlebarsApplicationMixin(ApplicationV2) {
     const clues = [];
     for (const c of m.clues) {
       if (!gm && c.state === "hidden") continue;
-      const triedToday = myActors.filter((a) => attemptedOnDay(c, a.uuid, day)).map((a) => a.name);
+      const triedToday = myActors.filter((a) => attemptBlocked(m, c, a.uuid, day)).map((a) => a.name);
       clues.push({
         ...c,
         displayName: Checks.clueDisplayName(c),
@@ -216,6 +216,7 @@ export class MysteryApp extends HandlebarsApplicationMixin(ApplicationV2) {
       if (typeof data.goal === "string") m.goal = data.goal;
       if (typeof data.gmNotes === "string") m.gmNotes = data.gmNotes;
       if ("goalRevealed" in data) m.goalRevealed = Boolean(data.goalRevealed);
+      if ("unlimitedAttempts" in data) m.unlimitedAttempts = Boolean(data.unlimitedAttempts);
 
       if (data.difficulty && data.difficulty !== m.difficulty) {
         if (data.difficulty !== "custom") m.complexity = complexityForDifficulty(m.complexity, data.difficulty);

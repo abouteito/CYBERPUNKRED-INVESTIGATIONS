@@ -22,7 +22,7 @@ Conteúdo de fã não oficial. Cyberpunk RED é marca da R. Talsorian Games.
   - sucesso → dano − Ofuscação sai da Complexidade e o texto da pista é revelado;
   - falha → dano de Foco;
   - fumble (1 no dado e falha) → complicação da pista (bloqueio, −4 na Autópsia, aviso);
-  - uma tentativa por pista por personagem por dia; Foco 0 impede testes.
+  - uma tentativa por pista por personagem por dia (ou ilimitadas, marcando *tentativas ilimitadas* no mistério); Foco 0 impede testes.
 - **Pistas falsas**, **dicas** (Dedução CD 15, sempre custa 1d6 de Foco) e **obstáculos** (1d6 superando, 2d6 falhando).
 - **12 tipos de pista** com as perícias, danos e fumbles da tabela do PDF, editáveis.
 - **Compêndio** com *Grab and Smash* e *Someone Stole it First!* prontos e um diário "como usar".

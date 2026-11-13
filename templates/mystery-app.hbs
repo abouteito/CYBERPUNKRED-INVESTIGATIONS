@@ -25,6 +25,10 @@
         <button type="button" data-action="newDay" data-tooltip="{{localize "CPRINV.Day.NewHint"}}">
           <i class="fa-solid fa-sun"></i> {{localize "CPRINV.Day.New"}}
         </button>
+        <label class="cprinv-inline" data-tooltip="{{localize "CPRINV.Mystery.UnlimitedAttemptsHint"}}">
+          <input type="checkbox" name="unlimitedAttempts" {{checked mystery.unlimitedAttempts}}>
+          {{localize "CPRINV.Mystery.UnlimitedAttempts"}}
+        </label>
       {{/if}}
     </div>
 

@@ -62,6 +62,12 @@ export function attemptedOnDay(entry, actorUuid, day) {
   return (entry?.attempts ?? []).some((a) => a.actorUuid === actorUuid && a.day === day);
 }
 
+/** Bloqueia a tentativa? Mistérios com tentativas ilimitadas nunca bloqueiam (só o Foco limita). */
+export function attemptBlocked(mystery, entry, actorUuid, day) {
+  if (mystery?.unlimitedAttempts) return false;
+  return attemptedOnDay(entry, actorUuid, day);
+}
+
 export function canMakeEvidenceCheck(focusValue) {
   return focusValue > 0;
 }
@@ -143,6 +149,7 @@ export function normalizeMystery(raw = {}, idFn = () => "") {
     goal: toStr(src.goal),
     goalRevealed: src.goalRevealed === undefined ? true : toBool(src.goalRevealed),
     difficulty,
+    unlimitedAttempts: toBool(src.unlimitedAttempts),
     complexity: { max, value },
     status: value === 0 ? "solved" : pick(src.status, ["active", "solved"], "active"),
     gmNotes: toStr(src.gmNotes),

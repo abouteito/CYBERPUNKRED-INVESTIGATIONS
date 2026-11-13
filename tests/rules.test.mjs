@@ -94,3 +94,11 @@ test("trocar dificuldade preserva o progresso", () => {
   assert.deepEqual(complexityForDifficulty({ max: 50, value: 50 }, "challenging"), { max: 100, value: 100 });
   assert.deepEqual(complexityForDifficulty({ max: 50, value: 30 }, "challenging"), { max: 100, value: 80 });
 });
+
+test("tentativas ilimitadas: mistério com a opção nunca bloqueia", async () => {
+  const { attemptBlocked } = await import("../scripts/rules.js");
+  const entry = { attempts: [{ actorUuid: "Actor.a", day: 3 }] };
+  assert.equal(attemptBlocked(normalizeMystery({}), entry, "Actor.a", 3), true);
+  assert.equal(attemptBlocked(normalizeMystery({ unlimitedAttempts: true }), entry, "Actor.a", 3), false);
+  assert.equal(normalizeMystery({}).unlimitedAttempts, false);
+});
