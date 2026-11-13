@@ -1,38 +1,58 @@
 name: Release
 
-# Ao enviar uma tag de versão (ex.: 0.1.1), testa, empacota e cria a release com module.json + module.zip.
+# Quando a versão do module.json muda na main (ou ao rodar manualmente), testa, empacota e cria
+# a tag + release com module.json e module.zip. Se a release dessa versão já existe, não faz nada.
 on:
   push:
-    tags: ["*.*.*"]
+    branches: [main]
+    paths: ["module.json"]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Lê a versão
+        id: v
+        run: echo "version=$(node -p "require('./module.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Release já existe?
+        id: exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${{ steps.v.outputs.version }}" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-node@v4
+        if: steps.exists.outputs.skip == 'false'
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm test
-      - name: Versão do module.json igual à tag
+      - if: steps.exists.outputs.skip == 'false'
+        run: npm ci
+      - if: steps.exists.outputs.skip == 'false'
+        run: npm test
+      - name: Empacota
+        if: steps.exists.outputs.skip == 'false'
         run: |
-          V=$(node -p "require('./module.json').version")
-          T="${GITHUB_REF_NAME#v}"
-          test "$V" = "$T" || { echo "module.json $V ≠ tag $T"; exit 1; }
-      - name: Ajusta o link de download e empacota
-        run: |
-          node -e "const f='module.json',m=require('./'+f);m.download='https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/module.zip';require('fs').writeFileSync(f,JSON.stringify(m,null,2)+'\n')"
+          V="${{ steps.v.outputs.version }}"
+          node -e "const f='module.json',m=require('./'+f);m.download='https://github.com/${{ github.repository }}/releases/download/$V/module.zip';require('fs').writeFileSync(f,JSON.stringify(m,null,2)+'\n')"
           npm run build:packs
           rm -f packs/mysteries/LOCK
           zip -r module.zip module.json README.md LICENSE scripts templates styles lang packs
       - uses: softprops/action-gh-release@v2
+        if: steps.exists.outputs.skip == 'false'
         with:
-          name: ${{ github.ref_name }}
+          tag_name: ${{ steps.v.outputs.version }}
+          target_commitish: ${{ github.sha }}
+          name: ${{ steps.v.outputs.version }}
           body_path: .github/release-notes.md
+          make_latest: true
           files: |
             module.json
             module.zip
