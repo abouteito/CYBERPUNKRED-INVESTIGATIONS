@@ -388,6 +388,27 @@
 .cprinv-focus.zero .cprinv-focus-value {
   color: var(--cpr-color-red, #c8102e);
 }
+/* Linha compartilhada com o outro módulo (cpr-investigation / cpr-edgerunners-2070s) no topo do painel de baixo. */
+.actor-sheet .bottom-pane.cpr-has-addon-row {
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "addon-row" "tabs-bottom" "content-bottom";
+}
+.actor-sheet .bottom-pane > .cpr-addon-row {
+  grid-area: addon-row;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.313rem;
+  margin-bottom: 0.2rem;
+}
+.cpr-addon-row > .cprinv-focus {
+  order: 1;
+  flex: 0 1 16rem;
+  margin: 0;
+  padding: 0.15rem 0.4rem;
+  background: var(--cpr-background-box, #f4f1ea) !important;
+  border-left: 3px solid var(--cpr-color-red, #c8102e);
+}
 .cprinv-focus.is-mook {
   margin-top: 0.313rem;
 }
