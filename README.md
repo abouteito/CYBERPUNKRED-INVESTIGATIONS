@@ -81,3 +81,10 @@ npm install
 npm test             # regras, fluxo do mestre e templates
 npm run build:packs  # recompila o compêndio a partir de tools/pack-data.mjs
 ```
+
+## Publicar uma versão nova
+
+1. Suba `version` no `module.json` (ex.: `0.1.1`) e atualize `.github/release-notes.md`.
+2. Faça commit e envie uma tag com o mesmo número: `git tag 0.1.1 && git push origin main 0.1.1`.
+3. O GitHub Actions roda os testes e cria a release com `module.json` e `module.zip`. O Foundry pega a atualização pelo
+   manifesto.
