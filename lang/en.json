@@ -1,0 +1,326 @@
+{
+  "CPRINV": {
+    "Title": "Investigation",
+    "Sheet": {
+      "Label": "Mystery (CPR Investigation)"
+    },
+    "Browser": {
+      "Title": "Mysteries",
+      "Button": "Mysteries",
+      "None": "No mysteries available.",
+      "OpenClues": "Open clues:",
+      "Examples": "Sample mysteries"
+    },
+    "Context": {
+      "OpenMystery": "Open mystery",
+      "OpenAsJournal": "Open as a regular journal"
+    },
+    "Tabs": {
+      "Clues": "Clues",
+      "Obstacles": "Obstacles",
+      "Hints": "Hints",
+      "Notes": "Notes"
+    },
+    "Mystery": {
+      "NewName": "New mystery",
+      "Create": "New mystery",
+      "Name": "Name",
+      "Difficulty": "Difficulty",
+      "Complexity": "Complexity",
+      "Goal": "Goal",
+      "GoalPlaceholder": "What does the Crew need to find out?",
+      "GoalRevealed": "visible to players",
+      "GmNotes": "GM notes (clue chain, suspects, the truth...)",
+      "Active": "Ongoing",
+      "Solve": "Solve",
+      "SolveConfirm": "Set Complexity to 0 and declare the case solved?",
+      "Reopen": "Reopen",
+      "Shared": "Visible to players",
+      "NotShared": "Hidden from players",
+      "ShareHint": "Players need Observer permission to see the mystery and make checks."
+    },
+    "Difficulty": {
+      "easy": "Easy",
+      "average": "Average",
+      "challenging": "Challenging",
+      "difficult": "Difficult",
+      "legendary": "Legendary",
+      "custom": "Custom"
+    },
+    "Obfuscation": {
+      "none": "None",
+      "light": "Light",
+      "heavy": "Heavy",
+      "nearTotal": "Near Total"
+    },
+    "ClueType": {
+      "auditing": "Auditing",
+      "autopsy": "Autopsy",
+      "chemical": "Chemical Analysis",
+      "deciphering": "Deciphering",
+      "digital": "Digital Scavenging",
+      "forensics": "Forensics",
+      "gossip": "Gossip",
+      "interrogation": "Interrogation",
+      "observation": "Observation",
+      "research": "Research",
+      "tailing": "Tailing",
+      "tracking": "Tracking",
+      "custom": "Custom"
+    },
+    "ClueState": {
+      "hidden": "Hidden",
+      "available": "Available",
+      "collected": "Collected",
+      "debunked": "Red herring debunked",
+      "blocked": "Blocked"
+    },
+    "Fumble": {
+      "auditing": "",
+      "autopsy": "The body is damaged. Further Evidence Checks involving the body are made at −4.",
+      "chemical": "The sample is destroyed. It cannot be analyzed again without another sample.",
+      "deciphering": "",
+      "digital": "The device is Destroyed and must be repaired before further investigation.",
+      "forensics": "A crucial piece of evidence is Destroyed Beyond Repair and cannot provide further information.",
+      "gossip": "",
+      "interrogation": "The Check cannot be tried again by any member of the Crew.",
+      "observation": "",
+      "research": "",
+      "tailing": "The subject becomes aggressive or scared, as appropriate.",
+      "tracking": "",
+      "custom": ""
+    },
+    "FumbleEffect": {
+      "none": "None",
+      "note": "Announce only",
+      "penalty": "Penalty on further checks",
+      "blocked": "Block the clue"
+    },
+    "ObstacleType": {
+      "authority": "Authority",
+      "cultural": "Cultural Disputes",
+      "digital": "Digital",
+      "distraction": "Distraction",
+      "fatigue": "Fatigue",
+      "legal": "Legal",
+      "location": "Location",
+      "misdirection": "Misdirection",
+      "missingClue": "Missing Clue",
+      "socialEngineering": "Social Engineering",
+      "technological": "Technological Issues",
+      "territory": "Territory Disputes",
+      "custom": "Custom"
+    },
+    "ObstacleState": {
+      "hidden": "Hidden",
+      "active": "Active",
+      "resolved": "Resolved"
+    },
+    "Clue": {
+      "Add": "Add clue",
+      "Edit": "Edit clue",
+      "Delete": "Delete clue",
+      "None": "No clues yet.",
+      "Dv": "DV",
+      "Obfuscation": "Obfuscation",
+      "Damage": "Damage",
+      "FocusDamage": "Focus damage",
+      "Penalty": "Penalty:",
+      "RedHerring": "Red herring",
+      "RevealText": "What the Crew learns",
+      "CollectedBy": "Collected by",
+      "AttemptsToday": "Attempts today:",
+      "ResetAttempts": "Reset attempts and penalty"
+    },
+    "Obstacle": {
+      "Add": "Add obstacle",
+      "Edit": "Edit obstacle",
+      "Delete": "Delete obstacle",
+      "None": "No obstacles.",
+      "Face": "Face it",
+      "FaceTitle": "Obstacle: {name}",
+      "Cost": "Overcome: 1d6 Focus · Fail: 2d6",
+      "Overcome": "Overcome",
+      "Failed": "Failed",
+      "Results": "Results:",
+      "Subtitle": "{name} — {mystery}",
+      "ApplyTitle": "Apply obstacle result",
+      "ApplyExplain": "For obstacles resolved in play or in a scene. Overcoming costs 1d6 Focus; failing costs 2d6."
+    },
+    "Hint": {
+      "Title": "Ask for a hint",
+      "Ask": "Ask for a hint (Deduction DV15)",
+      "Explain": "Feeling aimless? Make a DV15 Deduction Check. It costs 1d6 Focus either way; on a success the GM hints where another Clue might be found.",
+      "Success": "Something clicks",
+      "Failure": "Nothing clicks",
+      "SuccessText": "The GM will point to where another Clue might be found.",
+      "FailureText": "A lot of mental strain, no new ideas.",
+      "GmTitle": "Hint for the GM to reveal",
+      "GmNoPrepared": "No prepared hints. Tell the Crew where another Clue might be found.",
+      "Reveal": "Reveal hint",
+      "Revealed": "Hint",
+      "RevealedTag": "Revealed",
+      "Prepared": "Prepared",
+      "Add": "Prepare a hint",
+      "Edit": "Edit hint",
+      "Delete": "Delete hint",
+      "Text": "Hint text"
+    },
+    "Clock": {
+      "Enabled": "Ticking clock",
+      "LabelPlaceholder": "E.g.: Deliver the ransom before dawn",
+      "Segments": "Segments",
+      "Visible": "visible to players",
+      "Default": "Ticking clock"
+    },
+    "Check": {
+      "Evidence": "Evidence Check",
+      "EvidenceTitle": "Evidence Check: {clue}",
+      "EvidenceSubtitle": "{name} — {mystery}",
+      "Skill": "Skill",
+      "Result": "Result",
+      "Alternative": "Alternative skill",
+      "RuleOfCool": "Rule of Cool",
+      "Success": "Success",
+      "Failure": "Failure",
+      "Fumble": "Fumble",
+      "ClueCollected": "Clue collected",
+      "Damage": "Complexity damage",
+      "NoRevealText": "The Crew adds another piece to the puzzle.",
+      "FailureText": "The clue didn't make sense this time.",
+      "AlreadyCollected": "Someone else had already collected this clue.",
+      "Debunked": "Red herring!",
+      "DebunkedText": "It isn't a Clue, for this mystery at least.",
+      "PenaltyNote": "{value} penalty from an earlier fumble on this clue.",
+      "TriedToday": "Already tried today:"
+    },
+    "Focus": {
+      "Label": "Focus",
+      "Tooltip": "Focus = 10 + 5 × (INT + WILL) ÷ 2, rounded up. At 0 you can't make Evidence Checks.",
+      "Investigators": "Investigators' Focus",
+      "AdjustTitle": "Adjust Focus",
+      "AdjustMode": "Mode",
+      "AdjustDelta": "Add/subtract",
+      "AdjustSet": "Set value",
+      "AdjustValue": "Value",
+      "AdjustReason": "Reason",
+      "ReasonFailedClue": "Failed Evidence Check: {clue}",
+      "ReasonHint": "Asked for a hint (Deduction)",
+      "ReasonObstacle": "Obstacle: {name}",
+      "ReasonRest": "A day of rest",
+      "ReasonManual": "Manual adjustment"
+    },
+    "Rest": {
+      "Title": "Rest for a day",
+      "Explain": "{name} spends the day doing nothing else (no Hustling or Role Abilities) and recovers INT + WILL Focus.",
+      "Concentration": "Make a DV15 Concentration Check to recover +5",
+      "ConcentrationShort": "Concentration",
+      "Button": "Rest",
+      "Done": "Recovered {amount} Focus."
+    },
+    "Log": {
+      "Open": "Focus history",
+      "Title": "Focus history — {name}",
+      "When": "When",
+      "Change": "Change",
+      "Reason": "Reason",
+      "By": "By",
+      "Empty": "No changes recorded."
+    },
+    "Day": {
+      "Label": "Day",
+      "Hint": "Each character can make one Evidence Check per Clue per day. The day follows world time and the New day button.",
+      "New": "New day",
+      "NewHint": "Advance the day and allow new checks",
+      "NewTitle": "A new day begins",
+      "NewText": "Day {day}: Evidence Checks are open again."
+    },
+    "Solved": {
+      "Title": "Case solved!",
+      "Outcome": "Solved"
+    },
+    "Skill": {
+      "AnyScience": "any Science"
+    },
+    "Editor": {
+      "Name": "Name",
+      "ClueNamePlaceholder": "E.g.: Storeroom door",
+      "ObstacleNamePlaceholder": "E.g.: Party security",
+      "Type": "Type",
+      "State": "State",
+      "Skills": "Skills",
+      "SkillHelp": "System skill names in English, comma separated. Use {role} for Role Abilities and {science} for any Science.",
+      "AllowAnySkill": "Allow other skills (Rule of Cool)",
+      "CustomValue": "other",
+      "FumbleEffect": "Fumble effect",
+      "FumblePenalty": "Fumble penalty",
+      "FumbleText": "Fumble text (empty = type default)",
+      "RedHerringHint": "Players see a normal clue. Beating the DV reveals it's false; failing costs Focus like a regular failure.",
+      "RevealPlaceholder": "What is revealed when someone passes the check. Accepts @UUID links.",
+      "GmNotes": "GM notes",
+      "Description": "Description",
+      "ObstacleHint": "Leave skills empty to resolve it in play and apply the result with the gavel button."
+    },
+    "Dialog": {
+      "ChooseCharacter": "Choose character",
+      "ChooseSkill": "Choose skill",
+      "Character": "Character",
+      "Skill": "Skill",
+      "Suggested": "Suggested by the clue",
+      "OtherSkills": "Other skills (Rule of Cool)",
+      "ExtraMod": "Extra modifier",
+      "SystemDialogNote": "The system roll dialog opens next, with LUCK and modifiers.",
+      "Continue": "Continue",
+      "Roll": "Roll",
+      "Cancel": "Cancel",
+      "Apply": "Apply",
+      "Save": "Save",
+      "Create": "Create",
+      "Close": "Close",
+      "ConfirmDelete": "Really delete? This cannot be undone."
+    },
+    "Settings": {
+      "ShowDv": {
+        "Name": "Show DVs to players",
+        "Hint": "When off, only the GM sees clue and obstacle DVs."
+      },
+      "ComplexityDisplay": {
+        "Name": "Complexity for players",
+        "Hint": "How players see the remaining Complexity of mysteries.",
+        "Number": "Numbers",
+        "Bar": "Bar only",
+        "Hidden": "Hidden"
+      },
+      "TiesSucceed": {
+        "Name": "Meeting the DV counts as success",
+        "Hint": "Cyberpunk RED rules require beating the DV. Turn on if your table succeeds on a tie."
+      },
+      "MookFocus": {
+        "Name": "Focus for NPCs (mooks)",
+        "Hint": "Also show Focus on mook sheets and let NPCs investigate."
+      },
+      "UseWorldTime": {
+        "Name": "Use world time for days",
+        "Hint": "The one-check-per-clue-per-day limit follows Foundry world time, plus the New day button."
+      }
+    },
+    "Error": {
+      "NoGM": "A GM must be logged in to resolve checks.",
+      "Timeout": "The GM didn't answer in time.",
+      "NoActor": "No character available. Select your character's token.",
+      "NoSkill": "{name} doesn't have the required skill.",
+      "NoFocus": "{name} has no Focus and can't make Evidence Checks until resting.",
+      "AlreadyTried": "{name} already tried this today. Try again another day.",
+      "ClueUnavailable": "This clue isn't available.",
+      "ObstacleUnavailable": "This obstacle isn't active.",
+      "AlreadySolved": "This mystery is already solved.",
+      "ActorMissing": "Character not found.",
+      "NotOwner": "You don't control this character.",
+      "NotInvestigator": "{name} can't investigate.",
+      "MysteryMissing": "Mystery not found.",
+      "WrongSystem": "The Investigation module only works with the Cyberpunk RED - CORE system.",
+      "AdapterFailed": "Investigation: couldn't load parts of the Cyberpunk RED system. Rolls won't work.",
+      "ImportFirst": "Import this mystery into the world (right-click → Import) to use it."
+    }
+  }
+}

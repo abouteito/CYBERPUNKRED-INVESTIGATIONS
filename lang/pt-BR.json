@@ -1,0 +1,326 @@
+{
+  "CPRINV": {
+    "Title": "Investigação",
+    "Sheet": {
+      "Label": "Mistério (Investigação CPR)"
+    },
+    "Browser": {
+      "Title": "Mistérios",
+      "Button": "Mistérios",
+      "None": "Nenhum mistério disponível.",
+      "OpenClues": "Pistas em aberto:",
+      "Examples": "Casos de exemplo"
+    },
+    "Context": {
+      "OpenMystery": "Abrir mistério",
+      "OpenAsJournal": "Abrir como diário comum"
+    },
+    "Tabs": {
+      "Clues": "Pistas",
+      "Obstacles": "Obstáculos",
+      "Hints": "Dicas",
+      "Notes": "Anotações"
+    },
+    "Mystery": {
+      "NewName": "Novo mistério",
+      "Create": "Novo mistério",
+      "Name": "Nome",
+      "Difficulty": "Dificuldade",
+      "Complexity": "Complexidade",
+      "Goal": "Objetivo",
+      "GoalPlaceholder": "O que a equipe precisa descobrir?",
+      "GoalRevealed": "visível aos jogadores",
+      "GmNotes": "Anotações do mestre (cadeia de pistas, suspeitos, a verdade...)",
+      "Active": "Em andamento",
+      "Solve": "Resolver",
+      "SolveConfirm": "Zerar a Complexidade e declarar o caso resolvido?",
+      "Reopen": "Reabrir",
+      "Shared": "Visível aos jogadores",
+      "NotShared": "Oculto dos jogadores",
+      "ShareHint": "Jogadores precisam de permissão de Observador para ver o mistério e fazer testes."
+    },
+    "Difficulty": {
+      "easy": "Fácil",
+      "average": "Média",
+      "challenging": "Desafiadora",
+      "difficult": "Difícil",
+      "legendary": "Lendária",
+      "custom": "Personalizada"
+    },
+    "Obfuscation": {
+      "none": "Nenhuma",
+      "light": "Leve",
+      "heavy": "Pesada",
+      "nearTotal": "Quase total"
+    },
+    "ClueType": {
+      "auditing": "Auditoria",
+      "autopsy": "Autópsia",
+      "chemical": "Análise química",
+      "deciphering": "Decifração",
+      "digital": "Garimpo digital",
+      "forensics": "Perícia forense",
+      "gossip": "Fofoca",
+      "interrogation": "Interrogatório",
+      "observation": "Observação",
+      "research": "Pesquisa",
+      "tailing": "Seguir alguém",
+      "tracking": "Rastreamento",
+      "custom": "Personalizada"
+    },
+    "ClueState": {
+      "hidden": "Oculta",
+      "available": "Disponível",
+      "collected": "Coletada",
+      "debunked": "Pista falsa descartada",
+      "blocked": "Bloqueada"
+    },
+    "Fumble": {
+      "auditing": "",
+      "autopsy": "O corpo foi danificado. Novos testes envolvendo o corpo sofrem −4.",
+      "chemical": "A amostra foi destruída. Não dá para analisar de novo sem outra amostra.",
+      "deciphering": "",
+      "digital": "O aparelho foi destruído e precisa ser consertado antes de investigar mais.",
+      "forensics": "Uma prova crucial foi destruída além do reparo e não fornece mais informação.",
+      "gossip": "",
+      "interrogation": "Ninguém da equipe pode tentar este teste de novo.",
+      "observation": "",
+      "research": "",
+      "tailing": "O alvo fica agressivo ou assustado, conforme a situação.",
+      "tracking": "",
+      "custom": ""
+    },
+    "FumbleEffect": {
+      "none": "Nenhum",
+      "note": "Só anunciar",
+      "penalty": "Penalidade nos próximos testes",
+      "blocked": "Bloquear a pista"
+    },
+    "ObstacleType": {
+      "authority": "Autoridade",
+      "cultural": "Diferenças culturais",
+      "digital": "Digital",
+      "distraction": "Distração",
+      "fatigue": "Fadiga",
+      "legal": "Legal",
+      "location": "Local",
+      "misdirection": "Desinformação",
+      "missingClue": "Pista ausente",
+      "socialEngineering": "Engenharia social",
+      "technological": "Problemas tecnológicos",
+      "territory": "Disputa territorial",
+      "custom": "Personalizado"
+    },
+    "ObstacleState": {
+      "hidden": "Oculto",
+      "active": "Ativo",
+      "resolved": "Resolvido"
+    },
+    "Clue": {
+      "Add": "Adicionar pista",
+      "Edit": "Editar pista",
+      "Delete": "Excluir pista",
+      "None": "Nenhuma pista ainda.",
+      "Dv": "CD",
+      "Obfuscation": "Ofuscação",
+      "Damage": "Dano",
+      "FocusDamage": "Dano de Foco",
+      "Penalty": "Penalidade:",
+      "RedHerring": "Pista falsa (red herring)",
+      "RevealText": "O que a equipe descobre",
+      "CollectedBy": "Coletada por",
+      "AttemptsToday": "Tentativas hoje:",
+      "ResetAttempts": "Zerar tentativas e penalidade"
+    },
+    "Obstacle": {
+      "Add": "Adicionar obstáculo",
+      "Edit": "Editar obstáculo",
+      "Delete": "Excluir obstáculo",
+      "None": "Nenhum obstáculo.",
+      "Face": "Enfrentar",
+      "FaceTitle": "Obstáculo: {name}",
+      "Cost": "Superar: 1d6 de Foco · Falhar: 2d6",
+      "Overcome": "Superado",
+      "Failed": "Falhou",
+      "Results": "Resultados:",
+      "Subtitle": "{name} — {mystery}",
+      "ApplyTitle": "Aplicar resultado do obstáculo",
+      "ApplyExplain": "Para obstáculos resolvidos na narração ou numa cena. Superar custa 1d6 de Foco; falhar custa 2d6."
+    },
+    "Hint": {
+      "Title": "Pedir dica",
+      "Ask": "Pedir dica (Dedução CD 15)",
+      "Explain": "Sem saber para onde ir? Teste de Dedução CD 15. Custa 1d6 de Foco de qualquer jeito; no sucesso, o mestre indica onde achar outra pista.",
+      "Success": "Algo se encaixa",
+      "Failure": "Nada se encaixa",
+      "SuccessText": "O mestre vai indicar onde procurar outra pista.",
+      "FailureText": "Muito esforço mental, nenhuma ideia nova.",
+      "GmTitle": "Dica para o mestre revelar",
+      "GmNoPrepared": "Nenhuma dica preparada. Diga onde a equipe pode encontrar outra pista.",
+      "Reveal": "Revelar dica",
+      "Revealed": "Dica",
+      "RevealedTag": "Revelada",
+      "Prepared": "Preparada",
+      "Add": "Preparar dica",
+      "Edit": "Editar dica",
+      "Delete": "Excluir dica",
+      "Text": "Texto da dica"
+    },
+    "Clock": {
+      "Enabled": "Relógio correndo",
+      "LabelPlaceholder": "Ex.: Entregar o resgate antes do amanhecer",
+      "Segments": "Segmentos",
+      "Visible": "visível aos jogadores",
+      "Default": "Relógio correndo"
+    },
+    "Check": {
+      "Evidence": "Teste de Evidência",
+      "EvidenceTitle": "Teste de Evidência: {clue}",
+      "EvidenceSubtitle": "{name} — {mystery}",
+      "Skill": "Perícia",
+      "Result": "Resultado",
+      "Alternative": "Perícia alternativa",
+      "RuleOfCool": "Regra do Legal",
+      "Success": "Sucesso",
+      "Failure": "Falha",
+      "Fumble": "Fumble",
+      "ClueCollected": "Pista coletada",
+      "Damage": "Dano na Complexidade",
+      "NoRevealText": "A equipe junta mais uma peça do quebra-cabeça.",
+      "FailureText": "A pista não fez sentido desta vez.",
+      "AlreadyCollected": "Outra pessoa já tinha coletado esta pista.",
+      "Debunked": "Pista falsa!",
+      "DebunkedText": "Não é uma pista, pelo menos não para este mistério.",
+      "PenaltyNote": "Penalidade de {value} por um fumble anterior nesta pista.",
+      "TriedToday": "Já tentaram hoje:"
+    },
+    "Focus": {
+      "Label": "Foco",
+      "Tooltip": "Foco = 10 + 5 × (INT + VONT) ÷ 2, arredondado para cima. Com 0, não dá para fazer Testes de Evidência.",
+      "Investigators": "Foco dos investigadores",
+      "AdjustTitle": "Ajustar Foco",
+      "AdjustMode": "Tipo",
+      "AdjustDelta": "Somar/subtrair",
+      "AdjustSet": "Definir valor",
+      "AdjustValue": "Valor",
+      "AdjustReason": "Motivo",
+      "ReasonFailedClue": "Falhou no Teste de Evidência: {clue}",
+      "ReasonHint": "Pediu dica (Dedução)",
+      "ReasonObstacle": "Obstáculo: {name}",
+      "ReasonRest": "Descanso de um dia",
+      "ReasonManual": "Ajuste manual"
+    },
+    "Rest": {
+      "Title": "Descansar um dia",
+      "Explain": "{name} passa o dia sem fazer mais nada (sem Hustle nem habilidades de Role) e recupera INT + VONT de Foco.",
+      "Concentration": "Testar Concentração CD 15 para recuperar +5",
+      "ConcentrationShort": "Concentração",
+      "Button": "Descansar",
+      "Done": "Recuperou {amount} de Foco."
+    },
+    "Log": {
+      "Open": "Histórico de Foco",
+      "Title": "Histórico de Foco — {name}",
+      "When": "Quando",
+      "Change": "Mudança",
+      "Reason": "Motivo",
+      "By": "Por",
+      "Empty": "Nenhuma mudança registrada."
+    },
+    "Day": {
+      "Label": "Dia",
+      "Hint": "Cada personagem pode fazer um Teste de Evidência por pista por dia. O dia segue o relógio do mundo e o botão Novo dia.",
+      "New": "Novo dia",
+      "NewHint": "Avança o dia e libera novos testes",
+      "NewTitle": "Um novo dia começa",
+      "NewText": "Dia {day}: os Testes de Evidência estão liberados de novo."
+    },
+    "Solved": {
+      "Title": "Caso resolvido!",
+      "Outcome": "Resolvido"
+    },
+    "Skill": {
+      "AnyScience": "qualquer Ciência"
+    },
+    "Editor": {
+      "Name": "Nome",
+      "ClueNamePlaceholder": "Ex.: Porta do depósito",
+      "ObstacleNamePlaceholder": "Ex.: Seguranças da festa",
+      "Type": "Tipo",
+      "State": "Estado",
+      "Skills": "Perícias",
+      "SkillHelp": "Nomes das perícias do sistema em inglês, separados por vírgula. Use {role} para habilidades de Role e {science} para qualquer Ciência.",
+      "AllowAnySkill": "Permitir outras perícias (Regra do Legal)",
+      "CustomValue": "outro",
+      "FumbleEffect": "Efeito do fumble",
+      "FumblePenalty": "Penalidade do fumble",
+      "FumbleText": "Texto do fumble (vazio = padrão do tipo)",
+      "RedHerringHint": "Para os jogadores parece uma pista normal. Superando a CD, descobrem que é falsa; falhando, perdem Foco como numa falha comum.",
+      "RevealPlaceholder": "O que é revelado quando alguém passa no teste. Aceita links @UUID.",
+      "GmNotes": "Notas do mestre",
+      "Description": "Descrição",
+      "ObstacleHint": "Deixe as perícias vazias para resolver na narração e aplicar o resultado pelo botão de martelo."
+    },
+    "Dialog": {
+      "ChooseCharacter": "Escolher personagem",
+      "ChooseSkill": "Escolher perícia",
+      "Character": "Personagem",
+      "Skill": "Perícia",
+      "Suggested": "Sugeridas pela pista",
+      "OtherSkills": "Outras perícias (Regra do Legal)",
+      "ExtraMod": "Modificador extra",
+      "SystemDialogNote": "Em seguida abre a janela de rolagem do sistema, com Sorte e modificadores.",
+      "Continue": "Continuar",
+      "Roll": "Rolar",
+      "Cancel": "Cancelar",
+      "Apply": "Aplicar",
+      "Save": "Salvar",
+      "Create": "Criar",
+      "Close": "Fechar",
+      "ConfirmDelete": "Excluir mesmo? Isso não pode ser desfeito."
+    },
+    "Settings": {
+      "ShowDv": {
+        "Name": "Mostrar CD aos jogadores",
+        "Hint": "Se desligado, só o mestre vê as CDs das pistas e obstáculos."
+      },
+      "ComplexityDisplay": {
+        "Name": "Complexidade para os jogadores",
+        "Hint": "Como os jogadores veem a Complexidade restante dos mistérios.",
+        "Number": "Números",
+        "Bar": "Só a barra",
+        "Hidden": "Oculta"
+      },
+      "TiesSucceed": {
+        "Name": "Empate com a CD conta como sucesso",
+        "Hint": "Pela regra do Cyberpunk RED é preciso superar a CD. Ligue se sua mesa usa igualar."
+      },
+      "MookFocus": {
+        "Name": "Foco para NPCs (mooks)",
+        "Hint": "Mostra o Foco também na ficha de mook e permite que NPCs investiguem."
+      },
+      "UseWorldTime": {
+        "Name": "Usar o relógio do mundo para os dias",
+        "Hint": "O limite de um teste por pista por dia segue o tempo do mundo do Foundry, além do botão Novo dia."
+      }
+    },
+    "Error": {
+      "NoGM": "É preciso um mestre conectado para resolver os testes.",
+      "Timeout": "O mestre não respondeu a tempo.",
+      "NoActor": "Nenhum personagem disponível. Selecione o token do seu personagem.",
+      "NoSkill": "{name} não tem a perícia necessária.",
+      "NoFocus": "{name} está sem Foco e não consegue fazer Testes de Evidência até descansar.",
+      "AlreadyTried": "{name} já tentou isto hoje. Tente de novo outro dia.",
+      "ClueUnavailable": "Esta pista não está disponível.",
+      "ObstacleUnavailable": "Este obstáculo não está ativo.",
+      "AlreadySolved": "Este mistério já foi resolvido.",
+      "ActorMissing": "Personagem não encontrado.",
+      "NotOwner": "Você não controla este personagem.",
+      "NotInvestigator": "{name} não pode investigar.",
+      "MysteryMissing": "Mistério não encontrado.",
+      "WrongSystem": "O módulo de Investigação só funciona com o sistema Cyberpunk RED - CORE.",
+      "AdapterFailed": "Investigação: não consegui carregar partes do sistema Cyberpunk RED. As rolagens não vão funcionar.",
+      "ImportFirst": "Importe este caso para o mundo (botão direito → Importar) para usá-lo."
+    }
+  }
+}

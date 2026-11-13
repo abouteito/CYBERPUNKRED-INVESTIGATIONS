@@ -1,0 +1,283 @@
+<div class="cprinv-app cprinv-scroll{{#if solved}} is-solved{{/if}}">
+  <header class="cprinv-header">
+    {{#if gm}}
+      <div class="cprinv-row">
+        <input class="cprinv-title-input" type="text" name="name" value="{{name}}"
+               placeholder="{{localize "CPRINV.Mystery.Name"}}">
+        <button type="button" data-action="toggleShare"
+                data-tooltip="{{localize "CPRINV.Mystery.ShareHint"}}">
+          <i class="fa-solid {{#if shared}}fa-eye{{else}}fa-eye-slash{{/if}}"></i>
+          {{#if shared}}{{localize "CPRINV.Mystery.Shared"}}{{else}}{{localize "CPRINV.Mystery.NotShared"}}{{/if}}
+        </button>
+      </div>
+    {{/if}}
+
+    <div class="cprinv-status">
+      {{#if solved}}
+        <span class="cprinv-badge success"><i class="fa-solid fa-check"></i> {{localize "CPRINV.Solved.Outcome"}}</span>
+      {{else}}
+        <span class="cprinv-badge">{{localize "CPRINV.Mystery.Active"}}</span>
+      {{/if}}
+      <span class="cprinv-day" data-tooltip="{{localize "CPRINV.Day.Hint"}}">
+        <i class="fa-regular fa-calendar"></i> {{localize "CPRINV.Day.Label"}} {{day}}
+      </span>
+      {{#if gm}}
+        <button type="button" data-action="newDay" data-tooltip="{{localize "CPRINV.Day.NewHint"}}">
+          <i class="fa-solid fa-sun"></i> {{localize "CPRINV.Day.New"}}
+        </button>
+      {{/if}}
+    </div>
+
+    {{!-- Complexidade --}}
+    <section class="cprinv-complexity">
+      <div class="cprinv-label">{{localize "CPRINV.Mystery.Complexity"}}</div>
+      {{#if gm}}
+        <div class="cprinv-row">
+          <select name="difficulty">{{selectOptions difficultyChoices selected=mystery.difficulty}}</select>
+          <input type="number" name="complexity.value" value="{{complexity.value}}" min="0">
+          <span>/</span>
+          <input type="number" name="complexity.max" value="{{complexity.max}}" min="1">
+          <button type="button" data-action="solve">
+            {{#if solved}}<i class="fa-solid fa-rotate-left"></i> {{localize "CPRINV.Mystery.Reopen"}}
+            {{else}}<i class="fa-solid fa-flag-checkered"></i> {{localize "CPRINV.Mystery.Solve"}}{{/if}}
+          </button>
+        </div>
+      {{/if}}
+      {{#if complexity.showBar}}
+        <div class="cprinv-bar"><div style="width: {{complexity.pct}}%"></div></div>
+      {{/if}}
+      {{#if complexity.showNumber}}
+        {{#unless gm}}<div class="cprinv-small">{{complexity.value}} / {{complexity.max}}</div>{{/unless}}
+      {{/if}}
+    </section>
+
+    {{!-- Objetivo --}}
+    <section class="cprinv-goal">
+      <div class="cprinv-label">
+        {{localize "CPRINV.Mystery.Goal"}}
+        {{#if gm}}
+          <label class="cprinv-inline">
+            <input type="checkbox" name="goalRevealed" {{checked mystery.goalRevealed}}>
+            {{localize "CPRINV.Mystery.GoalRevealed"}}
+          </label>
+        {{/if}}
+      </div>
+      {{#if gm}}
+        <textarea name="goal" rows="2" placeholder="{{localize "CPRINV.Mystery.GoalPlaceholder"}}">{{mystery.goal}}</textarea>
+      {{else}}
+        <div class="cprinv-text">{{{goalHtml}}}</div>
+      {{/if}}
+    </section>
+
+    {{!-- Relógio --}}
+    {{#if gm}}
+      <section class="cprinv-clock-config">
+        <label class="cprinv-inline">
+          <input type="checkbox" name="clock.enabled" {{checked clock.enabled}}> {{localize "CPRINV.Clock.Enabled"}}
+        </label>
+        {{#if clock.enabled}}
+          <input type="text" name="clock.label" value="{{clock.label}}" placeholder="{{localize "CPRINV.Clock.LabelPlaceholder"}}">
+          <label class="cprinv-inline">{{localize "CPRINV.Clock.Segments"}}
+            <input type="number" name="clock.max" value="{{clock.max}}" min="1" max="24">
+          </label>
+          <label class="cprinv-inline">
+            <input type="checkbox" name="clock.visible" {{checked clock.visible}}> {{localize "CPRINV.Clock.Visible"}}
+          </label>
+        {{/if}}
+      </section>
+    {{/if}}
+    {{#if clock.show}}
+      <section class="cprinv-clock">
+        <div class="cprinv-label"><i class="fa-solid fa-stopwatch"></i> {{#if clock.label}}{{clock.label}}{{else}}{{localize "CPRINV.Clock.Default"}}{{/if}}</div>
+        <div class="cprinv-row">
+          {{#if gm}}<button type="button" data-action="clockDown"><i class="fa-solid fa-minus"></i></button>{{/if}}
+          <div class="cprinv-clock-segments">
+            {{#each clockSegments}}<span class="{{#if filled}}filled{{/if}}"></span>{{/each}}
+          </div>
+          {{#if gm}}<button type="button" data-action="clockUp"><i class="fa-solid fa-plus"></i></button>{{/if}}
+        </div>
+      </section>
+    {{/if}}
+
+    {{!-- Foco dos investigadores --}}
+    {{#if investigators.length}}
+      <section class="cprinv-investigators">
+        <div class="cprinv-label">{{localize "CPRINV.Focus.Investigators"}}</div>
+        <div class="cprinv-investigator-list">
+          {{#each investigators}}
+            <div class="cprinv-investigator{{#if zero}} zero{{/if}}" data-actor-uuid="{{uuid}}">
+              <img src="{{img}}" alt="">
+              <span class="name">{{name}}</span>
+              <span class="value">{{value}}/{{max}}</span>
+              <a data-action="adjustFocus" data-tooltip="{{localize "CPRINV.Focus.AdjustTitle"}}"><i class="fa-solid fa-sliders"></i></a>
+            </div>
+          {{/each}}
+        </div>
+      </section>
+    {{/if}}
+  </header>
+
+  <nav class="cprinv-tabs">
+    <a class="{{#if (eq tab "clues")}}active{{/if}}" data-action="setTab" data-tab="clues">
+      <i class="fa-solid fa-magnifying-glass"></i> {{localize "CPRINV.Tabs.Clues"}} ({{clues.length}})
+    </a>
+    <a class="{{#if (eq tab "obstacles")}}active{{/if}}" data-action="setTab" data-tab="obstacles">
+      <i class="fa-solid fa-road-barrier"></i> {{localize "CPRINV.Tabs.Obstacles"}} ({{obstacles.length}})
+    </a>
+    <a class="{{#if (eq tab "hints")}}active{{/if}}" data-action="setTab" data-tab="hints">
+      <i class="fa-solid fa-lightbulb"></i> {{localize "CPRINV.Tabs.Hints"}}
+    </a>
+    {{#if gm}}
+      <a class="{{#if (eq tab "notes")}}active{{/if}}" data-action="setTab" data-tab="notes">
+        <i class="fa-solid fa-note-sticky"></i> {{localize "CPRINV.Tabs.Notes"}}
+      </a>
+    {{/if}}
+  </nav>
+
+  {{!-- PISTAS --}}
+  {{#if (eq tab "clues")}}
+    <section class="cprinv-list">
+      {{#if gm}}
+        <button type="button" class="cprinv-add" data-action="addClue"><i class="fa-solid fa-plus"></i> {{localize "CPRINV.Clue.Add"}}</button>
+      {{/if}}
+      {{#each clues}}
+        <article class="cprinv-entry state-{{state}}{{#if redHerring}} red-herring{{/if}}" data-clue-id="{{id}}">
+          <div class="cprinv-entry-head">
+            <div class="cprinv-entry-title">
+              <strong>{{displayName}}</strong>
+              <span class="cprinv-tag">{{typeLabel}}</span>
+              {{#if ../gm}}{{#if redHerring}}<span class="cprinv-tag warn">{{localize "CPRINV.Clue.RedHerring"}}</span>{{/if}}{{/if}}
+            </div>
+            {{#if ../gm}}
+              <select name="clueState.{{id}}">{{selectOptions stateChoices selected=state}}</select>
+              <a data-action="editClue" data-tooltip="{{localize "CPRINV.Clue.Edit"}}"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="resetAttempts" data-tooltip="{{localize "CPRINV.Clue.ResetAttempts"}}"><i class="fa-solid fa-rotate"></i></a>
+              <a data-action="deleteClue" data-tooltip="{{localize "CPRINV.Clue.Delete"}}"><i class="fa-solid fa-trash"></i></a>
+            {{else}}
+              <span class="cprinv-tag state">{{stateLabel}}</span>
+            {{/if}}
+          </div>
+          <div class="cprinv-entry-meta">
+            <span><i class="fa-solid fa-dice-d10"></i> {{skillsLabel}}{{#if allowAnySkill}} · {{localize "CPRINV.Check.RuleOfCool"}}{{/if}}</span>
+            {{#if showDv}}<span>{{localize "CPRINV.Clue.Dv"}} {{dv}}</span>{{/if}}
+            {{#if ../gm}}
+              <span>{{localize "CPRINV.Clue.Obfuscation"}} {{obfuscation}}</span>
+              <span>{{localize "CPRINV.Clue.Damage"}} {{damage}}</span>
+              <span>{{localize "CPRINV.Clue.FocusDamage"}} {{focusDamage}}</span>
+              <span>{{localize "CPRINV.Clue.AttemptsToday"}} {{attemptsToday}}</span>
+            {{/if}}
+            {{#if penalty}}<span class="warn">{{localize "CPRINV.Clue.Penalty"}} {{penalty}}</span>{{/if}}
+          </div>
+          {{#if collectedBy}}
+            <div class="cprinv-small">{{localize "CPRINV.Clue.CollectedBy"}} {{collectedBy}}</div>
+          {{/if}}
+          {{#if blockedReason}}
+            <div class="cprinv-small warn"><i class="fa-solid fa-ban"></i> {{blockedReason}}</div>
+          {{/if}}
+          {{#if revealHtml}}
+            <div class="cprinv-reveal">
+              {{#if ../gm}}<div class="cprinv-label">{{localize "CPRINV.Clue.RevealText"}}</div>{{/if}}
+              {{{revealHtml}}}
+            </div>
+          {{/if}}
+          {{#if ../gm}}
+            {{#if fumble}}<div class="cprinv-small"><strong>{{localize "CPRINV.Check.Fumble"}}:</strong> {{fumble}}</div>{{/if}}
+            {{#if gmNotesHtml}}<div class="cprinv-gm-notes">{{{gmNotesHtml}}}</div>{{/if}}
+          {{/if}}
+          {{#if canCheck}}
+            <div class="cprinv-entry-actions">
+              <button type="button" data-action="evidenceCheck">
+                <i class="fa-solid fa-magnifying-glass"></i> {{localize "CPRINV.Check.Evidence"}}
+              </button>
+              {{#if triedToday}}<span class="cprinv-small">{{localize "CPRINV.Check.TriedToday"}} {{triedToday}}</span>{{/if}}
+            </div>
+          {{/if}}
+        </article>
+      {{else}}
+        <p class="cprinv-empty">{{localize "CPRINV.Clue.None"}}</p>
+      {{/each}}
+    </section>
+  {{/if}}
+
+  {{!-- OBSTÁCULOS --}}
+  {{#if (eq tab "obstacles")}}
+    <section class="cprinv-list">
+      {{#if gm}}
+        <button type="button" class="cprinv-add" data-action="addObstacle"><i class="fa-solid fa-plus"></i> {{localize "CPRINV.Obstacle.Add"}}</button>
+      {{/if}}
+      {{#each obstacles}}
+        <article class="cprinv-entry state-{{state}}" data-obstacle-id="{{id}}">
+          <div class="cprinv-entry-head">
+            <div class="cprinv-entry-title">
+              <strong>{{displayName}}</strong>
+              <span class="cprinv-tag">{{typeLabel}}</span>
+            </div>
+            {{#if ../gm}}
+              <select name="obstacleState.{{id}}">{{selectOptions stateChoices selected=state}}</select>
+              <a data-action="applyObstacle" data-tooltip="{{localize "CPRINV.Obstacle.ApplyTitle"}}"><i class="fa-solid fa-gavel"></i></a>
+              <a data-action="editObstacle" data-tooltip="{{localize "CPRINV.Obstacle.Edit"}}"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteObstacle" data-tooltip="{{localize "CPRINV.Obstacle.Delete"}}"><i class="fa-solid fa-trash"></i></a>
+            {{else}}
+              <span class="cprinv-tag state">{{stateLabel}}</span>
+            {{/if}}
+          </div>
+          {{#if descriptionHtml}}<div class="cprinv-text">{{{descriptionHtml}}}</div>{{/if}}
+          <div class="cprinv-entry-meta">
+            {{#if skillsLabel}}<span><i class="fa-solid fa-dice-d10"></i> {{skillsLabel}}</span>{{/if}}
+            {{#if showDv}}<span>{{localize "CPRINV.Clue.Dv"}} {{dv}}</span>{{/if}}
+            <span>{{localize "CPRINV.Obstacle.Cost"}}</span>
+          </div>
+          {{#if resultsLabel}}<div class="cprinv-small">{{localize "CPRINV.Obstacle.Results"}} {{resultsLabel}}</div>{{/if}}
+          {{#if canFace}}
+            <div class="cprinv-entry-actions">
+              <button type="button" data-action="faceObstacle">
+                <i class="fa-solid fa-person-running"></i> {{localize "CPRINV.Obstacle.Face"}}
+              </button>
+            </div>
+          {{/if}}
+        </article>
+      {{else}}
+        <p class="cprinv-empty">{{localize "CPRINV.Obstacle.None"}}</p>
+      {{/each}}
+    </section>
+  {{/if}}
+
+  {{!-- DICAS --}}
+  {{#if (eq tab "hints")}}
+    <section class="cprinv-list">
+      <p class="cprinv-small">{{localize "CPRINV.Hint.Explain"}}</p>
+      {{#unless solved}}
+        <button type="button" data-action="askHint"><i class="fa-solid fa-lightbulb"></i> {{localize "CPRINV.Hint.Ask"}}</button>
+      {{/unless}}
+      {{#if gm}}
+        <button type="button" class="cprinv-add" data-action="addHint"><i class="fa-solid fa-plus"></i> {{localize "CPRINV.Hint.Add"}}</button>
+      {{/if}}
+      {{#each hints}}
+        <article class="cprinv-entry{{#if revealed}} state-collected{{/if}}" data-hint-id="{{id}}">
+          <div class="cprinv-entry-head">
+            <div class="cprinv-entry-title">
+              {{#if revealed}}<span class="cprinv-tag">{{localize "CPRINV.Hint.RevealedTag"}}</span>
+              {{else}}<span class="cprinv-tag">{{localize "CPRINV.Hint.Prepared"}}</span>{{/if}}
+            </div>
+            {{#if ../gm}}
+              <a data-action="revealHint" data-tooltip="{{localize "CPRINV.Hint.Reveal"}}"><i class="fa-solid fa-eye"></i></a>
+              <a data-action="editHint" data-tooltip="{{localize "CPRINV.Hint.Edit"}}"><i class="fa-solid fa-pen"></i></a>
+              <a data-action="deleteHint" data-tooltip="{{localize "CPRINV.Hint.Delete"}}"><i class="fa-solid fa-trash"></i></a>
+            {{/if}}
+          </div>
+          <div class="cprinv-text">{{{html}}}</div>
+        </article>
+      {{/each}}
+    </section>
+  {{/if}}
+
+  {{!-- ANOTAÇÕES DO MESTRE --}}
+  {{#if gm}}
+    {{#if (eq tab "notes")}}
+      <section class="cprinv-list">
+        <div class="cprinv-label">{{localize "CPRINV.Mystery.GmNotes"}}</div>
+        <textarea name="gmNotes" rows="14">{{mystery.gmNotes}}</textarea>
+      </section>
+    {{/if}}
+  {{/if}}
+</div>

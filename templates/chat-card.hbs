@@ -1,0 +1,37 @@
+<div class="rollcard cprinv-card">
+  <div class="rollcard-top">
+    <div class="cpr-block chat-rollTitle-stat">
+      <div class="text-center text-padding-top text-normal text-semi">
+        <i class="fa-solid fa-user-secret"></i> {{title}}
+      </div>
+      {{#if subtitle}}<div class="text-center text-small">{{subtitle}}</div>{{/if}}
+    </div>
+  </div>
+  <div class="rollcard-bottom">
+    <div class="cpr-block cprinv-card-body">
+      {{#if outcome}}
+        <div class="cprinv-outcome {{outcome.cls}}">{{outcome.label}}</div>
+      {{/if}}
+      {{#each lines}}
+        <div class="cprinv-line">
+          <span class="cprinv-line-label">{{label}}</span>
+          <span class="cprinv-line-value">{{value}}</span>
+        </div>
+      {{/each}}
+      {{#if bar}}
+        <div class="cprinv-bar"><div style="width: {{bar}}%"></div></div>
+      {{/if}}
+      {{#if body}}<div class="cprinv-card-text">{{{body}}}</div>{{/if}}
+      {{#if buttons.length}}
+        <div class="cprinv-card-buttons">
+          {{#each buttons}}
+            <button type="button" data-cprinv-action="{{action}}" data-gm-only="{{#if gmOnly}}true{{else}}false{{/if}}"
+                    {{#each data}}data-{{@key}}="{{this}}" {{/each}}>
+              {{#if icon}}<i class="{{icon}}"></i>{{/if}} {{label}}
+            </button>
+          {{/each}}
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</div>

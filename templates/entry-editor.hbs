@@ -1,0 +1,89 @@
+<div class="cprinv-editor-body">
+  <div class="form-group">
+    <label>{{localize "CPRINV.Editor.Name"}}</label>
+    <input type="text" name="name" value="{{entry.name}}"
+           placeholder="{{#if isClue}}{{localize "CPRINV.Editor.ClueNamePlaceholder"}}{{else}}{{localize "CPRINV.Editor.ObstacleNamePlaceholder"}}{{/if}}">
+  </div>
+  <div class="form-group">
+    <label>{{localize "CPRINV.Editor.Type"}}</label>
+    <select name="type">{{selectOptions typeChoices selected=entry.type}}</select>
+  </div>
+  <div class="form-group">
+    <label>{{localize "CPRINV.Editor.State"}}</label>
+    <select name="state">{{selectOptions stateChoices selected=entry.state}}</select>
+  </div>
+  <div class="form-group">
+    <label>{{localize "CPRINV.Editor.Skills"}}</label>
+    <input type="text" name="skills" value="{{skillsText}}">
+    <p class="hint">{{skillHelp}}</p>
+  </div>
+  <div class="form-group">
+    <label class="checkbox">
+      <input type="checkbox" name="allowAnySkill" {{checked entry.allowAnySkill}}>
+      {{localize "CPRINV.Editor.AllowAnySkill"}}
+    </label>
+  </div>
+  <div class="form-group">
+    <label>{{localize "CPRINV.Clue.Dv"}}</label>
+    <input type="number" name="dv" value="{{entry.dv}}" min="0" step="1">
+  </div>
+
+  {{#if isClue}}
+    <div class="form-group">
+      <label>{{localize "CPRINV.Clue.Obfuscation"}}</label>
+      <select name="obfuscation" data-dtype="Number">
+        {{#each obfuscationChoices}}
+          <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
+        {{/each}}
+      </select>
+      <input type="number" name="obfuscationCustom" min="0" step="1"
+             value="{{#if obfuscationCustom}}{{entry.obfuscation}}{{/if}}"
+             placeholder="{{localize "CPRINV.Editor.CustomValue"}}">
+    </div>
+    <div class="form-group">
+      <label>{{localize "CPRINV.Clue.Damage"}}</label>
+      <input type="text" name="damage" value="{{entry.damage}}">
+    </div>
+    <div class="form-group">
+      <label>{{localize "CPRINV.Clue.FocusDamage"}}</label>
+      <input type="text" name="focusDamage" value="{{entry.focusDamage}}">
+    </div>
+    <div class="form-group">
+      <label>{{localize "CPRINV.Editor.FumbleEffect"}}</label>
+      <select name="fumbleEffect">{{selectOptions fumbleChoices selected=entry.fumbleEffect}}</select>
+    </div>
+    <div class="form-group">
+      <label>{{localize "CPRINV.Editor.FumblePenalty"}}</label>
+      <input type="number" name="fumblePenalty" value="{{entry.fumblePenalty}}" max="0" step="1">
+    </div>
+    <div class="form-group stacked">
+      <label>{{localize "CPRINV.Editor.FumbleText"}}</label>
+      <textarea name="fumbleText" rows="2" placeholder="{{fumbleDefault}}">{{entry.fumbleText}}</textarea>
+    </div>
+    <div class="form-group">
+      <label class="checkbox">
+        <input type="checkbox" name="redHerring" {{checked entry.redHerring}}>
+        {{localize "CPRINV.Clue.RedHerring"}}
+      </label>
+      <p class="hint">{{localize "CPRINV.Editor.RedHerringHint"}}</p>
+    </div>
+    <div class="form-group stacked">
+      <label>{{localize "CPRINV.Clue.RevealText"}}</label>
+      <textarea name="revealText" rows="4" placeholder="{{localize "CPRINV.Editor.RevealPlaceholder"}}">{{entry.revealText}}</textarea>
+    </div>
+    <div class="form-group stacked">
+      <label>{{localize "CPRINV.Editor.GmNotes"}}</label>
+      <textarea name="gmNotes" rows="3">{{entry.gmNotes}}</textarea>
+    </div>
+  {{else}}
+    <div class="form-group stacked">
+      <label>{{localize "CPRINV.Editor.Description"}}</label>
+      <textarea name="description" rows="4">{{entry.description}}</textarea>
+      <p class="hint">{{localize "CPRINV.Editor.ObstacleHint"}}</p>
+    </div>
+  {{/if}}
+
+  <footer class="cprinv-editor-footer">
+    <button type="submit"><i class="fa-solid fa-floppy-disk"></i> {{localize "CPRINV.Dialog.Save"}}</button>
+  </footer>
+</div>

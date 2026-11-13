@@ -1,0 +1,457 @@
+/* Did Someone Say Murder? — Investigação para Cyberpunk RED
+ * Usa as variáveis de tema do sistema (--cpr-*) com valores de reserva. */
+
+.cprinv {
+  --cprinv-red: var(--cpr-color-red, #c8102e);
+  --cprinv-box: var(--cpr-background-box, #f4f1ea);
+  --cprinv-border: var(--cpr-background-border, #1b1b1b);
+  --cprinv-text: var(--cpr-text-normal, #191813);
+  --cprinv-muted: var(--cpr-text-hint, #6b6b6b);
+  --cprinv-ok: #2e7d32;
+  --cprinv-info: #1565c0;
+  --cprinv-warn: #b26a00;
+}
+
+/* ---------- Painel e lista ---------- */
+.cprinv .window-content {
+  padding: 0;
+}
+.cprinv-app {
+  padding: 0.5rem 0.75rem 1rem;
+  color: var(--cprinv-text);
+  height: 100%;
+  overflow-y: auto;
+}
+.cprinv-app.is-solved .cprinv-header {
+  border-left-color: var(--cprinv-ok);
+}
+.cprinv-header {
+  border-left: 4px solid var(--cprinv-red);
+  padding-left: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cprinv-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cprinv-row > input[type="number"] {
+  width: 4.5rem;
+  flex: 0 0 auto;
+}
+.cprinv-row > select {
+  flex: 1 1 auto;
+}
+.cprinv-row > button {
+  flex: 0 0 auto;
+  width: auto;
+  white-space: nowrap;
+}
+.cprinv-title-input {
+  font-size: 1.3rem;
+  font-weight: 700;
+  flex: 1 1 auto;
+}
+.cprinv-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.cprinv-status button {
+  width: auto;
+  flex: 0 0 auto;
+  line-height: 1.6rem;
+}
+.cprinv-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--cprinv-red);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.cprinv-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--cprinv-text);
+}
+.cprinv-small {
+  font-size: 0.85rem;
+  color: var(--cprinv-muted);
+}
+.cprinv-small.warn,
+.cprinv-entry-meta .warn {
+  color: var(--cprinv-warn);
+}
+.cprinv-empty {
+  font-style: italic;
+  color: var(--cprinv-muted);
+}
+.cprinv-text p:first-child {
+  margin-top: 0;
+}
+.cprinv textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.cprinv-badge,
+.cprinv-tag {
+  display: inline-block;
+  padding: 0 0.4rem;
+  border-radius: 3px;
+  border: 1px solid var(--cprinv-border);
+  font-size: 0.75rem;
+  line-height: 1.3rem;
+  white-space: nowrap;
+}
+.cprinv-badge.success,
+.cprinv-tag.success {
+  border-color: var(--cprinv-ok);
+  color: var(--cprinv-ok);
+}
+.cprinv-tag.warn {
+  border-color: var(--cprinv-warn);
+  color: var(--cprinv-warn);
+}
+.cprinv-tag.state {
+  margin-left: auto;
+}
+
+/* Barra de Complexidade/Foco */
+.cprinv-bar,
+.cprinv-focus-bar {
+  height: 0.6rem;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--cprinv-border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0.25rem 0;
+}
+.cprinv-bar > div {
+  height: 100%;
+  background: var(--cprinv-red);
+  transition: width 0.4s ease;
+}
+
+/* Relógio */
+.cprinv-clock-config {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cprinv-clock-config input[type="text"] {
+  flex: 1 1 10rem;
+}
+.cprinv-clock-config input[type="number"] {
+  width: 3.5rem;
+}
+.cprinv-clock .cprinv-row button {
+  width: 1.8rem;
+  flex: 0 0 auto;
+}
+.cprinv-clock-segments {
+  display: flex;
+  gap: 3px;
+  flex: 1 1 auto;
+}
+.cprinv-clock-segments span {
+  flex: 1 1 0;
+  height: 0.9rem;
+  border: 1px solid var(--cprinv-border);
+  background: transparent;
+}
+.cprinv-clock-segments span.filled {
+  background: var(--cprinv-red);
+}
+
+/* Investigadores */
+.cprinv-investigator-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cprinv-investigator {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--cprinv-border);
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem 0.1rem 0.1rem;
+  background: var(--cprinv-box);
+}
+.cprinv-investigator img {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: none;
+  object-fit: cover;
+}
+.cprinv-investigator .value {
+  font-weight: 700;
+}
+.cprinv-investigator.zero .value {
+  color: var(--cprinv-red);
+}
+
+/* Abas */
+.cprinv-tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 2px solid var(--cprinv-red);
+  margin: 0.5rem 0;
+}
+.cprinv-tabs a {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}
+.cprinv-tabs a.active {
+  background: var(--cprinv-red);
+  color: #fff;
+}
+
+/* Entradas (pistas, obstáculos, dicas) */
+.cprinv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cprinv-list > button {
+  width: auto;
+  align-self: flex-start;
+}
+.cprinv-entry {
+  border: 1px solid var(--cprinv-border);
+  border-left: 4px solid var(--cprinv-muted);
+  border-radius: 3px;
+  padding: 0.4rem 0.5rem;
+  background: var(--cprinv-box);
+}
+.cprinv-entry.state-available {
+  border-left-color: var(--cprinv-red);
+}
+.cprinv-entry.state-active {
+  border-left-color: var(--cprinv-warn);
+}
+.cprinv-entry.state-collected,
+.cprinv-entry.state-resolved {
+  border-left-color: var(--cprinv-ok);
+}
+.cprinv-entry.state-debunked {
+  border-left-color: var(--cprinv-info);
+  opacity: 0.8;
+}
+.cprinv-entry.state-blocked {
+  border-left-style: dashed;
+  border-left-color: var(--cprinv-warn);
+}
+.cprinv-entry.state-hidden {
+  opacity: 0.7;
+  border-style: dashed;
+}
+.cprinv-entry-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cprinv-entry-head select {
+  width: auto;
+  flex: 0 0 auto;
+}
+.cprinv-entry-title {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.cprinv-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.8rem;
+  font-size: 0.85rem;
+  color: var(--cprinv-muted);
+  margin: 0.2rem 0;
+}
+.cprinv-reveal {
+  border-top: 1px dashed var(--cprinv-border);
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+}
+.cprinv-gm-notes {
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.25rem 0.4rem;
+  margin-top: 0.25rem;
+}
+.cprinv-entry-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+.cprinv-entry-actions button {
+  width: auto;
+  flex: 0 0 auto;
+}
+.cprinv-browser-entry {
+  cursor: pointer;
+}
+.cprinv-browser-entry:hover {
+  border-left-color: var(--cprinv-red);
+}
+.cprinv-browser-entry.is-solved {
+  opacity: 0.75;
+}
+
+/* Editor */
+.cprinv-editor-body {
+  padding: 0.5rem 0.75rem;
+}
+.cprinv-editor-body .form-group select + input {
+  max-width: 6rem;
+  margin-left: 0.3rem;
+}
+.cprinv-editor-footer {
+  margin-top: 0.5rem;
+}
+
+/* Diálogos */
+.cprinv-dialog .cprinv-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+.cprinv-log {
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+/* ---------- Foco nas fichas do sistema ---------- */
+.cprinv-focus {
+  grid-column: 1 / -1;
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "title value actions"
+    "bar bar bar";
+  align-items: center;
+  gap: 0.15rem 0.4rem;
+  padding: 0.2rem 0.4rem;
+  background: var(--cpr-background-box, #f4f1ea);
+}
+.cprinv-focus * {
+  background: transparent !important;
+}
+.cprinv-focus .cprinv-focus-title {
+  grid-area: title;
+  font-weight: 600;
+  display: block !important;
+}
+.cprinv-focus .cprinv-focus-value {
+  grid-area: value;
+  text-align: center;
+  font-weight: 700;
+  display: block !important;
+}
+.cprinv-focus .cprinv-focus-actions {
+  grid-area: actions;
+  display: flex !important;
+  gap: 0.5rem;
+}
+.cprinv-focus .cprinv-focus-bar {
+  grid-area: bar;
+  display: block !important;
+  height: 0.35rem;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+.cprinv-focus .cprinv-focus-bar > div {
+  display: block !important;
+  height: 100%;
+  background: var(--cpr-color-red, #c8102e) !important;
+}
+.cprinv-focus.zero .cprinv-focus-value {
+  color: var(--cpr-color-red, #c8102e);
+}
+.cprinv-focus.is-mook {
+  margin-top: 0.313rem;
+}
+.cprinv-focus i,
+.cprinv-focus a {
+  display: inline-block !important;
+}
+
+/* ---------- Diretório de diário ---------- */
+.cprinv-open-browser {
+  flex: 0 0 100%;
+}
+.cprinv-mystery-icon {
+  margin-right: 0.3rem;
+  color: var(--cpr-color-red, #c8102e);
+}
+
+/* ---------- Cards do chat ---------- */
+.cprinv-card .cprinv-card-body {
+  padding: 0.3rem 0.5rem;
+  display: block;
+}
+.cprinv-outcome {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem;
+  margin-bottom: 0.3rem;
+  border: 1px solid currentColor;
+}
+.cprinv-outcome.success {
+  color: #2e7d32;
+}
+.cprinv-outcome.failure {
+  color: #8d6e63;
+}
+.cprinv-outcome.fumble {
+  color: #fff;
+  background: var(--cpr-color-red, #c8102e);
+  border-color: var(--cpr-color-red, #c8102e);
+}
+.cprinv-outcome.info {
+  color: #1565c0;
+}
+.cprinv-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.cprinv-line-label {
+  font-weight: 600;
+}
+.cprinv-card-text {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+}
+.cprinv-card-text p {
+  margin: 0.2rem 0;
+}
+.cprinv-fumble-text {
+  color: var(--cpr-color-red, #c8102e);
+}
+.cprinv-card-buttons {
+  margin-top: 0.4rem;
+}

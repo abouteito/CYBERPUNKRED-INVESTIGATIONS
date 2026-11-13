@@ -1,0 +1,39 @@
+<div class="cprinv-app cprinv-scroll">
+  <div class="cprinv-status">
+    <span class="cprinv-day" data-tooltip="{{localize "CPRINV.Day.Hint"}}">
+      <i class="fa-regular fa-calendar"></i> {{localize "CPRINV.Day.Label"}} {{day}}
+    </span>
+    {{#if gm}}
+      <button type="button" data-action="newDay"><i class="fa-solid fa-sun"></i> {{localize "CPRINV.Day.New"}}</button>
+    {{/if}}
+  </div>
+  {{#if gm}}
+    <div class="cprinv-row">
+      <button type="button" class="cprinv-add" data-action="create"><i class="fa-solid fa-plus"></i> {{localize "CPRINV.Mystery.Create"}}</button>
+      {{#if hasExamples}}
+        <button type="button" data-action="examples"><i class="fa-solid fa-book"></i> {{localize "CPRINV.Browser.Examples"}}</button>
+      {{/if}}
+    </div>
+  {{/if}}
+  <section class="cprinv-list">
+    {{#each mysteries}}
+      <article class="cprinv-entry cprinv-browser-entry{{#if solved}} is-solved{{/if}}" data-journal-id="{{id}}" data-action="open">
+        <div class="cprinv-entry-head">
+          <div class="cprinv-entry-title">
+            <strong>{{name}}</strong>
+            <span class="cprinv-tag">{{difficulty}}</span>
+            {{#if solved}}<span class="cprinv-tag success">{{localize "CPRINV.Solved.Outcome"}}</span>{{/if}}
+            {{#if ../gm}}{{#unless shared}}<span class="cprinv-tag" data-tooltip="{{localize "CPRINV.Mystery.ShareHint"}}"><i class="fa-solid fa-eye-slash"></i></span>{{/unless}}{{/if}}
+          </div>
+        </div>
+        {{#if showBar}}<div class="cprinv-bar"><div style="width: {{pct}}%"></div></div>{{/if}}
+        <div class="cprinv-entry-meta">
+          {{#if showNumber}}<span>{{localize "CPRINV.Mystery.Complexity"}} {{value}}/{{max}}</span>{{/if}}
+          <span>{{localize "CPRINV.Browser.OpenClues"}} {{openClues}}</span>
+        </div>
+      </article>
+    {{else}}
+      <p class="cprinv-empty">{{localize "CPRINV.Browser.None"}}</p>
+    {{/each}}
+  </section>
+</div>

@@ -1,0 +1,13 @@
+{
+  "name": "cpr-investigation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/rules.test.mjs tests/flow.test.mjs tests/templates.test.mjs",
+    "build:packs": "node tools/build-packs.mjs"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "1.1.0",
+    "handlebars": "^4.7.8"
+  }
+}

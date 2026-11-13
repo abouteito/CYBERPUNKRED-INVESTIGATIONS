@@ -1,0 +1,36 @@
+name: Release
+
+# Ao publicar uma release no GitHub, empacota o módulo e anexa module.json + module.zip.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm test
+      - name: Versão do module.json igual à tag
+        run: |
+          V=$(node -p "require('./module.json').version")
+          T="${GITHUB_REF_NAME#v}"
+          test "$V" = "$T" || { echo "module.json $V ≠ tag $T"; exit 1; }
+      - name: Ajusta o link de download e empacota
+        run: |
+          node -e "const f='module.json',m=require('./'+f);m.download='https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/module.zip';require('fs').writeFileSync(f,JSON.stringify(m,null,2)+'\n')"
+          npm run build:packs
+          rm -f packs/mysteries/LOCK
+          zip -r module.zip module.json README.md LICENSE scripts templates styles lang packs
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            module.json
+            module.zip

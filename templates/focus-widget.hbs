@@ -1,0 +1,19 @@
+<div class="cprinv-focus{{#if mook}} is-mook{{/if}}{{#if zero}} zero{{/if}}">
+  <div class="cprinv-focus-title" data-tooltip="{{localize "CPRINV.Focus.Tooltip"}}">
+    <i class="fa-solid fa-brain"></i> {{localize "CPRINV.Focus.Label"}}
+  </div>
+  <div class="cprinv-focus-value">
+    {{#if owner}}
+      <a data-cprinv="adjust" data-tooltip="{{localize "CPRINV.Focus.AdjustTitle"}}">{{value}} / {{max}}</a>
+    {{else}}
+      {{value}} / {{max}}
+    {{/if}}
+  </div>
+  <div class="cprinv-focus-bar"><div style="width: {{pct}}%"></div></div>
+  {{#if owner}}
+    <div class="cprinv-focus-actions">
+      <a data-cprinv="rest" data-tooltip="{{localize "CPRINV.Rest.Title"}}"><i class="fa-solid fa-bed"></i></a>
+      <a data-cprinv="log" data-tooltip="{{localize "CPRINV.Log.Open"}}"><i class="fa-solid fa-clock-rotate-left"></i></a>
+    </div>
+  {{/if}}
+</div>
